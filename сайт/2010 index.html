@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <meta
+    name="description"
+    content="SexySwag [20/10] — русскоязычное сообщество Dota 2 для тех, кто регулярно играет, хочет побеждать и поднимать рейтинг."
+  >
+  <title>SexySwag [20/10] — Dota 2 Community</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --black: #101010;
+      --ink: #171717;
+      --panel: #1c1c1c;
+      --white: #f2f0eb;
+      --paper: #e8e5dd;
+      --gray: #aaa9a4;
+      --muted: #797873;
+      --line: rgba(242, 240, 235, 0.19);
+      --green: #a8f07a;
+      --red: #ff7979;
+      --max-width: 1160px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.07), transparent 40rem),
+        var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.09) 0.65px, transparent 0.65px);
+      background-size: 5px 5px;
+      content: "";
+      opacity: 0.13;
+      pointer-events: none;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 44px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 20;
+      inset: 0 0 auto;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+      background: rgba(16, 16, 16, 0.84);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      display: flex;
+      min-height: 72px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .brand-symbol {
+      display: grid;
+      width: 35px;
+      height: 35px;
+      place-items: center;
+      border: 1px solid var(--white);
+      background: var(--white);
+      color: var(--black);
+      font-size: 18px;
+      font-weight: 900;
+      transform: rotate(-4deg);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .member-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--paper);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .member-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(168, 240, 122, 0.7);
+    }
+
+    .header-link {
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    .header-link:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      min-height: 760px;
+      align-items: center;
+      padding: 138px 0 105px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -1;
+      top: 16%;
+      right: -6%;
+      width: min(53vw, 650px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(242, 240, 235, 0.18);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.09), transparent 64%),
+        repeating-radial-gradient(circle, transparent 0 38px, rgba(255, 255, 255, 0.07) 39px 40px);
+      content: "";
+      opacity: 0.6;
+    }
+
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      top: 19%;
+      right: 3%;
+      width: min(42vw, 520px);
+      height: 65%;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      content: "";
+      transform: skew(-13deg);
+    }
+
+    .hero-content {
+      max-width: 820px;
+    }
+
+    .manga-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 23px;
+      color: var(--paper);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.21em;
+      text-transform: uppercase;
+    }
+
+    .manga-label::before {
+      width: 30px;
+      height: 2px;
+      background: var(--white);
+      content: "";
+    }
+
+    .hero-title {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(52px, 9vw, 108px);
+      font-weight: 950;
+      letter-spacing: -0.085em;
+      line-height: 0.91;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.09);
+    }
+
+    .hero-title span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--white);
+    }
+
+    .hero-description {
+      max-width: 590px;
+      margin: 28px 0 30px;
+      color: #c2c0b9;
+      font-size: clamp(16px, 2vw, 18px);
+    }
+
+    .hero-description strong {
+      color: var(--white);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      position: relative;
+      display: inline-flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 21px;
+      border: 1px solid var(--white);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-primary {
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .button-primary:hover {
+      background: var(--paper);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--white);
+    }
+
+    .button-secondary:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .button-arrow {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .hero-caption {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 25px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .hero-caption::before {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      content: "";
+      transform: rotate(45deg);
+    }
+
+    .section {
+      padding: 95px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .section-kicker {
+      margin: 0 0 9px;
+      color: var(--gray);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 58px);
+      font-weight: 950;
+      letter-spacing: -0.07em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .section-intro {
+      max-width: 380px;
+      margin: 0;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 20px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat {
+      padding: 21px 22px;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat-number {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--white);
+      font-size: clamp(22px, 3vw, 31px);
+      font-weight: 950;
+      letter-spacing: -0.06em;
+    }
+
+    .stat-label {
+      color: var(--gray);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 205px;
+      padding: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(242, 240, 235, 0.2);
+      background: rgba(255, 255, 255, 0.035);
+      transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+    }
+
+    .feature-card::after {
+      position: absolute;
+      right: -18px;
+      bottom: -33px;
+      width: 98px;
+      height: 98px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .feature-card:hover {
+      border-color: rgba(255, 255, 255, 0.62);
+      background: rgba(255, 255, 255, 0.07);
+      transform: translateY(-4px);
+    }
+
+    .feature-index {
+      display: inline-block;
+      margin-bottom: 25px;
+      color: var(--gray);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 13px;
+      font-style: italic;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+
+    .feature-card p {
+      max-width: 300px;
+      margin: 0;
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    .roles-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .role-tag {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      color: var(--paper);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .join-section {
+      padding-top: 60px;
+    }
+
+    .join-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 44px;
+      padding: clamp(25px, 5vw, 52px);
+      overflow: hidden;
+      border: 1px solid rgba(242, 240, 235, 0.28);
+      background:
+        repeating-linear-gradient(135deg, transparent 0 18px, rgba(255, 255, 255, 0.025) 19px 20px),
+        #171717;
+    }
+
+    .join-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .join-copy .section-title {
+      max-width: 410px;
+    }
+
+    .join-copy > p:last-child {
+      max-width: 370px;
+      margin: 17px 0 0;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .application-form {
+      display: grid;
+      gap: 15px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      color: var(--paper);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 13px;
+      border: 1px solid rgba(242, 240, 235, 0.24);
+      border-radius: 0;
+      outline: none;
+      background: rgba(0, 0, 0, 0.35);
+      color: var(--white);
+      font-size: 14px;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field input::placeholder {
+      color: #777670;
+    }
+
+    .field select {
+      cursor: pointer;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--white);
+      box-shadow: 0 0 0 2px rgba(242, 240, 235, 0.13);
+    }
+
+    .field select option {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .form-hint {
+      margin: -5px 0 2px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .submit-button {
+      display: inline-flex;
+      min-height: 51px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 18px;
+      border: 1px solid var(--white);
+      background: var(--white);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .submit-button:hover:not(:disabled) {
+      background: transparent;
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .submit-button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+
+    .form-status {
+      max-height: 0;
+      margin-top: 0;
+      padding: 0 13px;
+      overflow: hidden;
+      border: 0 solid transparent;
+      opacity: 0;
+      transition:
+        max-height 280ms ease,
+        opacity 200ms ease,
+        margin-top 200ms ease,
+        padding 200ms ease;
+    }
+
+    .form-status.is-visible {
+      max-height: 200px;
+      margin-top: 13px;
+      padding: 12px 13px;
+      opacity: 1;
+    }
+
+    .form-status.success {
+      border: 1px solid rgba(168, 240, 122, 0.45);
+      background: rgba(168, 240, 122, 0.09);
+      color: #c4f3a5;
+      font-size: 13px;
+    }
+
+    .form-status.error {
+      border: 1px solid rgba(255, 121, 121, 0.48);
+      background: rgba(255, 121, 121, 0.08);
+      color: #ffaaaa;
+      font-size: 13px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      counter-reset: steps;
+    }
+
+    .step {
+      position: relative;
+      min-height: 156px;
+      padding: 22px;
+      border-top: 2px solid var(--white);
+      background: rgba(255, 255, 255, 0.035);
+      counter-increment: steps;
+    }
+
+    .step::before {
+      display: block;
+      margin-bottom: 16px;
+      color: var(--gray);
+      content: "0" counter(steps);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .step h3 {
+      margin: 0 0 7px;
+      font-size: 15px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--gray);
+      font-size: 12px;
+    }
+
+    .admin-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 27px 30px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .admin-panel h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .admin-panel p {
+      margin: 0;
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    .admin-link {
+      flex: 0 0 auto;
+    }
+
+    .site-footer {
+      padding: 25px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .footer-brand {
+      color: var(--paper);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 780px) {
+      .hero {
+        min-height: 680px;
+      }
+
+      .hero::before {
+        top: 25%;
+        right: -35%;
+        width: 83vw;
+      }
+
+      .hero::after {
+        right: -10%;
+      }
+
+      .section-header {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        min-height: 170px;
+      }
+
+      .join-panel {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 30px));
+      }
+
+      .header-inner {
+        min-height: 64px;
+      }
+
+      .brand {
+        gap: 8px;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+      }
+
+      .brand-symbol {
+        width: 30px;
+        height: 30px;
+      }
+
+      .header-right {
+        gap: 10px;
+      }
+
+      .member-count {
+        gap: 6px;
+        font-size: 9px;
+        letter-spacing: 0.04em;
+      }
+
+      .header-link {
+        padding: 7px 8px;
+        font-size: 9px;
+      }
+
+      .hero {
+        min-height: 660px;
+        padding-top: 115px;
+      }
+
+      .hero-title {
+        font-size: clamp(46px, 15vw, 74px);
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .stat-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 13px 5px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .stat-number {
+        margin: 0;
+      }
+
+      .join-panel {
+        padding: 23px 17px;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        min-height: 0;
+      }
+
+      .admin-panel {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 22px;
+      }
+
+      .footer-inner {
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="SexySwag [20/10] — на главную">
+        <span class="brand-symbol" aria-hidden="true">20</span>
+        <span>SexySwag [20/10]</span>
+      </a>
+
+      <div class="header-right">
+        <div class="member-count" aria-label="35 активных участников">
+          <span class="member-dot" aria-hidden="true"></span>
+          <span>35 активных</span>
+        </div>
+        <a
+          class="header-link"
+          href="https://lolka.me/reiatsu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Администратор</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <p class="manga-label">Dota 2 · Россия · Русский язык</p>
+
+        <h1 class="hero-title">
+          Твоя игра.
+          <span>Твой стак.</span>
+          20/10.
+        </h1>
+
+        <p class="hero-description">
+          <strong>SexySwag [20/10]</strong> — сообщество для тех, кто хочет играть регулярно,
+          побеждать и поднимать рейтинг. Матчмейкинг, Боевой кубок и команда,
+          которой важен общий результат.
+        </p>
+
+        <div class="hero-actions">
+          <a
+            class="button button-primary"
+            href="https://lolka.gg/jTQ1tblPH"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Вступить в Лолку
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="button button-secondary" href="#application">
+            Оставить заявку
+            <span class="button-arrow" aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <p class="hero-caption">Сообщество активно каждый день · часовой пояс Москва</p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Не просто поиск тиммейтов</p>
+            <h2 class="section-title">Играем как команда</h2>
+          </div>
+          <p class="section-intro">
+            Серьёзно относимся к игре и цели поднимать рейтинг, но сохраняем свободную
+            атмосферу — без фанатизма и лишнего давления.
+          </p>
+        </div>
+
+        <div class="stat-strip" aria-label="О сообществе">
+          <div class="stat">
+            <span class="stat-number">35</span>
+            <span class="stat-label">Активных участников</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">Каждый день</span>
+            <span class="stat-label">Сообщество на связи</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">Любые</span>
+            <span class="stat-label">Роли и MMR</span>
+          </div>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <span class="feature-index">Глава 01</span>
+            <h3>Цель — расти</h3>
+            <p>Играем рейтинговый матчмейкинг и стремимся поднимать рейтинг вместе.</p>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-index">Глава 02</span>
+            <h3>Играем вместе</h3>
+            <p>Собираемся на обычные рейтинговые игры и Боевой кубок.</p>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-index">Глава 03</span>
+            <h3>Уважение — база</h3>
+            <p>Общаемся уважительно, поддерживаем позитивную атмосферу и уважаем иерархию сервера.</p>
+          </article>
+        </div>
+
+        <div class="roles-list" aria-label="Ищем игроков на любые позиции">
+          <span class="role-tag">Керри · Pos 1</span>
+          <span class="role-tag">Мид · Pos 2</span>
+          <span class="role-tag">Оффлейн · Pos 3</span>
+          <span class="role-tag">Саппорт · Pos 4</span>
+          <span class="role-tag">Фулл-саппорт · Pos 5</span>
+          <span class="role-tag">Любой MMR</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section join-section" id="application">
+      <div class="container">
+        <div class="join-panel">
+          <div class="join-copy">
+            <p class="section-kicker">Твой следующий шаг</p>
+            <h2 class="section-title">Найди свой стак</h2>
+            <p>
+              Можешь сразу вступить в сервер или оставить заявку — её рассмотрит модератор.
+              После этого с тобой свяжутся в Лолке, обычно в течение рабочего дня.
+              Для игры нужны микрофон, желание побеждать и готовность регулярно играть.
+            </p>
+          </div>
+
+          <div>
+            <form
+              class="application-form"
+              id="application-form"
+              action="https://formspree.io/f/xljjowlj"
+              method="POST"
+            >
+              <div class="field">
+                <label for="player-name">Ник в Dota 2</label>
+                <input
+                  id="player-name"
+                  name="Игрок"
+                  type="text"
+                  placeholder="Твой игровой никнейм"
+                  autocomplete="nickname"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="lolka-name">Ник в Лолке</label>
+                <input
+                  id="lolka-name"
+                  name="Ник_в_Лолке"
+                  type="text"
+                  placeholder="Чтобы модератор мог написать тебе"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="player-rank">Текущий ранг / MMR</label>
+                <input
+                  id="player-rank"
+                  name="Ранг_MMR"
+                  type="text"
+                  placeholder="Необязательно — ограничений по MMR нет"
+                >
+              </div>
+
+              <div class="field">
+                <label for="player-role">Основная роль</label>
+                <select id="player-role" name="Роль" required>
+                  <option value="" disabled selected>Выбери позицию</option>
+                  <option value="Керри — Pos 1">Керри — Pos 1</option>
+                  <option value="Мид — Pos 2">Мид — Pos 2</option>
+                  <option value="Оффлейн — Pos 3">Оффлейн — Pos 3</option>
+                  <option value="Саппорт — Pos 4">Саппорт — Pos 4</option>
+                  <option value="Фулл-саппорт — Pos 5">Фулл-саппорт — Pos 5</option>
+                  <option value="Готов играть на разных ролях">Готов играть на разных ролях</option>
+                </select>
+              </div>
+
+              <p class="form-hint">
+                После отправки заявки модератор свяжется с тобой в Лолке.
+              </p>
+
+              <button class="submit-button" type="submit">
+                Оставить заявку
+                <span aria-hidden="true">↗</span>
+              </button>
+            </form>
+
+            <div
+              class="form-status"
+              id="form-status"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-to-join">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Коротко и понятно</p>
+            <h2 class="section-title">Как вступить</h2>
+          </div>
+          <p class="section-intro">
+            Выбирай удобный вариант: зайти на сервер сразу или отправить заявку модератору.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step">
+            <h3>Зайди в Лолку</h3>
+            <p>Перейди по приглашению и присоединяйся к серверу сообщества.</p>
+          </article>
+
+          <article class="step">
+            <h3>Или отправь заявку</h3>
+            <p>Укажи игровой ник, ник в Лолке и свою основную позицию.</p>
+          </article>
+
+          <article class="step">
+            <h3>Будь на связи</h3>
+            <p>Модератор рассмотрит заявку и напишет тебе в Лолке в течение рабочего дня.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="admin-panel">
+          <div>
+            <p class="section-kicker">Есть вопрос?</p>
+            <h3>Напиши администратору</h3>
+            <p>Свяжись напрямую в Лолке — подскажем, как присоединиться.</p>
+          </div>
+
+          <a
+            class="button button-secondary admin-link"
+            href="https://lolka.me/reiatsu"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Открыть профиль
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">SexySwag [20/10]</span>
+      <span>Dota 2 · Россия · Играем вместе, растём вместе</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const form = document.getElementById("application-form");
+      const statusBox = document.getElementById("form-status");
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.innerHTML;
+
+      function showStatus(message, type) {
+        statusBox.textContent = message;
+        statusBox.className = `form-status ${type} is-visible`;
+      }
+
+      function getErrorMessage(data) {
+        if (data && Array.isArray(data.errors) && data.errors.length > 0) {
+          const messages = data.errors
+            .map((item) => item && item.message)
+            .filter(Boolean);
+
+          if (messages.length > 0) {
+            return messages.join(" ");
+          }
+        }
+
+        if (data && typeof data.error === "string" && data.error.trim()) {
+          return data.error;
+        }
+
+        return "Не удалось отправить заявку. Попробуй ещё раз чуть позже.";
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!form.reportValidity()) {
+          return;
+        }
+
+        statusBox.className = "form-status";
+        statusBox.textContent = "";
+        submitButton.disabled = true;
+        submitButton.textContent = "Отправка...";
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: {
+              Accept: "application/json"
+            }
+          });
+
+          let responseData = null;
+
+          try {
+            responseData = await response.json();
+          } catch {
+            responseData = null;
+          }
+
+          if (!response.ok) {
+            throw new Error(getErrorMessage(responseData));
+          }
+
+          showStatus(
+            "Кайф! Твоя заявка успешно отправлена. Скоро свяжемся!",
+            "success"
+          );
+          form.reset();
+        } catch (error) {
+          const message = error instanceof Error && error.message
+            ? error.message
+            : "Проверь подключение к интернету и попробуй отправить заявку ещё раз.";
+
+          showStatus(`Ошибка: ${message}`, "error");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonText;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
